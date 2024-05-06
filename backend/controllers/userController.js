@@ -11,7 +11,6 @@ dotenv.config()
 //@access Public
 const authUser = asyncHandler(async (req, res) => {
     const { email, password } = req.body;
-    console.log("res", req.body);
 
     const user = await User.findOne({ email });
 
@@ -22,14 +21,13 @@ const authUser = asyncHandler(async (req, res) => {
             name: user.name,
             email: user.email,
         };
-        console.log(response)
+
 
         res.status(201).json(response);
     } else {
         res.status(401);
-        throw new Error('Invalid email or password');
+        throw new Error('dcdcdcdcd');
     }
-    res.status(200).json({ message: 'User Login' });
 });
 
 //@desc  Register  a new user
