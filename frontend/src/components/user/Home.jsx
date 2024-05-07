@@ -10,18 +10,6 @@ const Home = () => {
     console.log("account",userInfo)
 
 
-
-    // const fetchAccountBalance = async (username) => {
-    //     try {
-    //         const response = await fetch(`/api/accountBalance/${username}`);
-    //         const data = await response.json();
-    //         console.log("data",data);
-    //         setAccountBalance(data.accountBalance);
-    //     } catch (error) {
-    //         console.error('Error fetching account balance:', error);
-    //     }
-    // };
-
     return (
         <div className='py-5'>
             <Container className='d-flex justify-content-center'>
