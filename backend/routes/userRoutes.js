@@ -15,6 +15,5 @@ router.post('/auth', authUser)
 router.post('/logout', logoutUser)
 router.post('/deposite', protect, deposteAmount)
 router.post('/withdraw', protect, withdrawAmount)
-router.get('/accountBalance/:name',protect,fetchBalance) 
 
 export default router

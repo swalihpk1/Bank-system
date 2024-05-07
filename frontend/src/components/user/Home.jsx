@@ -4,26 +4,23 @@ import { LinkContainer } from 'react-router-bootstrap';
 import { useSelector } from 'react-redux';
 
 const Home = () => {
+
     const { userInfo } = useSelector((state) => state.auth);
-    const [accountBalance, setAccountBalance] = useState(0);
-    console.log("account",accountBalance)
 
-    useEffect(() => {
-        if (userInfo) {
-            fetchAccountBalance(userInfo.name);
-        }
-    }, [userInfo]);
+    console.log("account",userInfo)
 
-    const fetchAccountBalance = async (username) => {
-        try {
-            const response = await fetch(`/api/accountBalance/${username}`);
-            const data = await response.json();
-            console.log("data",data);
-            setAccountBalance(data.accountBalance);
-        } catch (error) {
-            console.error('Error fetching account balance:', error);
-        }
-    };
+
+
+    // const fetchAccountBalance = async (username) => {
+    //     try {
+    //         const response = await fetch(`/api/accountBalance/${username}`);
+    //         const data = await response.json();
+    //         console.log("data",data);
+    //         setAccountBalance(data.accountBalance);
+    //     } catch (error) {
+    //         console.error('Error fetching account balance:', error);
+    //     }
+    // };
 
     return (
         <div className='py-5'>
@@ -32,7 +29,7 @@ const Home = () => {
                     <h1 className='text-center mb-4'>Welcome to ABC bank</h1>
              
                     {!userInfo && <p>Please login to your account..!</p>}
-                    {userInfo && <h2>Account balance: {accountBalance}</h2>}
+                    {userInfo && <h2>Account balance: {userInfo.balance}</h2>}
 
 
                     {userInfo && (
