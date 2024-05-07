@@ -21,8 +21,8 @@ export const userApiSlice = apiSlice.injectEndpoints({
             }),
         }),
 
-        //deposite
-        updateUser: builder.mutation({
+        //deposit
+        deposite: builder.mutation({
             query: (data) => ({
                 url: `${USERS_URL}/deposite`,
                 method: "POST",
@@ -39,13 +39,7 @@ export const userApiSlice = apiSlice.injectEndpoints({
             }),
         }),
 
-        fetchBalance: builder.mutation({
-            query: (data) => ({
-                url: `${USERS_URL}/`,
-                method: "POST",
-                body: data,
-            }),
-        }),
+
 
         //Logout
         logout: builder.mutation({
@@ -57,5 +51,5 @@ export const userApiSlice = apiSlice.injectEndpoints({
     }),
 });
 
-export const { useLoginMutation, useLogoutMutation, useRegisterMutation, useUpdateUserMutation } =
+export const { useLoginMutation, useLogoutMutation, useRegisterMutation, useDepositeMutation, useUpdateUserMutation } =
     userApiSlice;

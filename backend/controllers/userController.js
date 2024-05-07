@@ -94,10 +94,8 @@ const logoutUser = asyncHandler(async (req, res) => {
 //route  POST /users/deposite
 //@access Private
 const deposteAmount = asyncHandler(async (req, res) => {
-
-    const amountToDeposit = parseInt(req.body.amount);
+    const amountToDeposit = parseFloat(req.body.amount);
     const { email } = req.body;
-
 
     console.log(typeof amountToDeposit);
     const updatedUser = await User.findOneAndUpdate(
@@ -113,8 +111,8 @@ const deposteAmount = asyncHandler(async (req, res) => {
                 }
             }
         },
+        { new: true } // Return the updated document
     );
-
 
     if (!updatedUser) {
         return res.status(404).json({ error: 'User not found' });
@@ -125,10 +123,9 @@ const deposteAmount = asyncHandler(async (req, res) => {
         name: updatedUser.name,
         email: updatedUser.email,
         balance: updatedUser.account.balance,
-        transactionHistory: updatedUser.account.transactionHistory
     });
-
 });
+
 
 
 //@desc  withdraw money
