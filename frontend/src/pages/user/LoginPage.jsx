@@ -34,12 +34,10 @@ const LoginPage = () => {
         e.preventDefault();
         try {
             const res = await login({ email, password }).unwrap();
-            // console.log("res",res);
             dispatch(setCredentials({ ...res }));
-            console.log("adeel");
             navigate('/');
-        } catch (err) {
-            toast.error("Invalid");
+        } catch (error) {
+            toast.error(error?.data?.message || error.error);
         }
     };
 

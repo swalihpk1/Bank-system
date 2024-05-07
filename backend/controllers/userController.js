@@ -35,7 +35,7 @@ const authUser = asyncHandler(async (req, res) => {
 //@access Public
 const registerUser = asyncHandler(async (req, res) => {
     const { name, email, phone, location, password } = req.body
-    console.log("res", req.body);
+
     const userExists = await User.findOne({ email });
     if (userExists) {
         res.status(400);
@@ -61,6 +61,8 @@ const registerUser = asyncHandler(async (req, res) => {
             balance: 0.0
         }
     });
+
+
 
     if (user) {
         generateToken(res, user._id, 'userJwt')
@@ -134,7 +136,7 @@ const deposteAmount = asyncHandler(async (req, res) => {
 const withdrawAmount = asyncHandler(async (req, res) => {
 
     const { email, amount } = req.body;
-    console.log(email,amount);
+    console.log(email, amount);
     const user = await User.findOne({ email });
 
     if (!user) {
@@ -165,10 +167,28 @@ const withdrawAmount = asyncHandler(async (req, res) => {
     });
 });
 
+
+//@desc  fetch balance
+//route  POST /accountBalance/:username
+//@access Private
+const fetchBalance = asyncHandler(async (req, res) => {
+    const { name } = req.params;
+    const user = await User.findOne({ name });
+    console.log(user)
+    if (user) {
+        res.json({ accountBalance: user.accountBalance });
+    } else {
+        res.status(404);
+        throw new Error('User not found');
+    }
+});
+
+
 export {
     authUser,
     registerUser,
     deposteAmount,
     withdrawAmount,
+    fetchBalance,
     logoutUser
 }
