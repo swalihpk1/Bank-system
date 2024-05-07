@@ -169,27 +169,11 @@ const withdrawAmount = asyncHandler(async (req, res) => {
 });
 
 
-//@desc  fetch balance
-//route  POST /accountBalance/:username
-//@access Private
-const fetchBalance = asyncHandler(async (req, res) => {
-    const { name } = req.params;
-    const user = await User.findOne({ name });
-    console.log(user)
-    if (user) {
-        res.json({ accountBalance: user.accountBalance });
-    } else {
-        res.status(404);
-        throw new Error('User not found');
-    }
-});
-
 
 export {
     authUser,
     registerUser,
     deposteAmount,
     withdrawAmount,
-    fetchBalance,
     logoutUser
 }

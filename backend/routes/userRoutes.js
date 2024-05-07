@@ -6,7 +6,6 @@ import {
     deposteAmount,
     withdrawAmount,
     logoutUser,
-    fetchBalance
 } from '../controllers/userController.js';
 const router = express.Router();
 
